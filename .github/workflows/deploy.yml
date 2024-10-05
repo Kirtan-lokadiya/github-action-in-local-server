@@ -18,13 +18,15 @@ jobs:
         with:
           node-version: '16.x'
 
-      - name: Install dependencies
+      - name: Install server dependencies
         run: |
           cd server
           npm install
 
-      - name: Lint and build the server
+      - name: Build the frontend (client)
         run: |
+          cd client
+          npm install
           npm run build
 
       - name: Deploy to local server
