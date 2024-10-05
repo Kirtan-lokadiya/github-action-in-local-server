@@ -40,13 +40,10 @@ jobs:
 
       - name: Start or Restart PM2 Process
         run: |
-          # Navigate to the server directory (adjust if necessary)
           cd /var/www/mern-app/server
-          # Start the application with PM2 using the correct name
           pm2 start app.js --name mern-backend || pm2 restart mern-backend
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
-
 
       - name: List PM2 Processes
         run: |
