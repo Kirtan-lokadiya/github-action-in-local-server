@@ -47,10 +47,6 @@ jobs:
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
 
-      - name: Show PM2 logs
-        run: |
-          pm2 logs mern-backend
+    
 
-      - name: List PM2 Processes
-        run: |
-          pm2 list
+     
