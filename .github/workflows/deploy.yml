@@ -26,9 +26,6 @@ jobs:
       - name: Install dependencies and build the client
         run: |
           cd client
-          echo "Current directory after cd client:"
-          pwd
-          ls -la
           npm install
           npm run build
 
@@ -38,14 +35,22 @@ jobs:
 
       - name: Deploy to local server
         run: |
-          echo "Current directory before copying to server:"
-          pwd
-          ls -la
           sudo mkdir -p /var/www/mern-app
           sudo cp -r . /var/www/mern-app
 
-      - name: Restart PM2
+      - name: Start or Restart PM2 Process
         run: |
-          pm2 restart mern-backend
+          # Navigate to the server directory (adjust if necessary)
+          cd /var/www/mern-app/server
+          # Start the application with PM2 using the correct name
+          pm2 start app.js --name mern-backend || pm2 restart mern-backend
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
+
+      - name: Show PM2 logs
+        run: |
+          pm2 logs mern-backend
+
+      - name: List PM2 Processes
+        run: |
+          pm2 list
