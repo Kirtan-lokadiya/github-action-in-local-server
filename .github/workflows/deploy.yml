@@ -26,16 +26,18 @@ jobs:
       - name: Install dependencies and build the client
         run: |
           cd client
-          # Debugging: List files in the current directory
           echo "Current directory after cd client:"
           pwd
           ls -la
           npm install
           npm run build
 
+      - name: Install PM2 globally
+        run: |
+          sudo npm install -g pm2
+
       - name: Deploy to local server
         run: |
-          # Debugging: List files in the current directory
           echo "Current directory before copying to server:"
           pwd
           ls -la
