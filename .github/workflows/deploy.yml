@@ -18,12 +18,12 @@ jobs:
         with:
           node-version: '16.x'
 
-      - name: Install server dependencies
+      - name: Install dependencies for the server
         run: |
           cd server
           npm install
 
-      - name: Build the frontend (client)
+      - name: Install dependencies and build the client
         run: |
           cd client
           npm install
